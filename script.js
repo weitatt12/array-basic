@@ -23,6 +23,21 @@ const people = [
     'july, ng'
 ]
 
+const pupil = [
+    { name: 'Wes', year: 1988 },
+    { name: 'Kait', year: 1986 },
+    { name: 'Irv', year: 1970 },
+    { name: 'Lux', year: 2015 }
+]
+
+const comments = [
+    { text: 'Love this', id: 523423 },
+    { text: 'Super good', id: 823423 },
+    { text: 'You are the best', id: 203423 },
+    { text: 'Ramen is good', id: 123423 },
+    { text: 'Nice Nice Nice', id: 542423 }
+]
+
 //1. array prototype filter()
 // filter the first of investor for those who were born in 1800's
 const eighteen = investor.filter(function(investor) {
@@ -100,4 +115,46 @@ const transportation = data.reduce(function(obj, item) {
 }, {});
 
 console.log(transportation)
+
+// 9. some() and every() checks
+// some() => is at least one person 19?
+const adult = pupil.some(function(person) {
+    const currentYear = (new Date()).getFullYear();
+    if(currentYear - person.year >= 19) {
+        return true;
+    }
+});
+
+console.log({adult})
+// every() => is everyone 19?
+const allAdults = pupil.every(function(person) {
+    const currentYear = (new Date()).getFullYear();
+    if(currentYear - person.year >= 19) {
+        return true;
+    }
+});
+
+console.log({allAdults})
+
+// 10. find() => find() is like filter, but instead of return just one you are looking for find the comment with the ID 823423
+const comment = comments.find(function(comment) {
+    if(comment.id == 823423) {
+        return comment.text
+    }
+});
+
+console.log(comment)
+
+//11. findIndex()
+// find the comment with this ID
+// delete the comment with ID of 823423
+const index = comments.findIndex(function(comment) {
+    if(comment.id == 823423) {
+        return true;
+    }
+});
+
+console.log(index)
+
+comments.splice(index, 1);
 
